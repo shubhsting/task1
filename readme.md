@@ -19,7 +19,7 @@ To run this project on any local machine-\
 2)run npm install to automatically install all libraries.\
 3)npm start to start the application on your local computer.
 
-=============================================================== \
+===============================================================\
 Algorithm of this code
 Add \
 1) Get data from req body\
