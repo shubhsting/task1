@@ -20,18 +20,18 @@ To run this project on any local machine-\
 3)npm start to start the application on your local computer.
 
 ===============================================================\
-Algorithm of this code
-Add \
+Algorithm of this code\
+ADD 
 1) Get data from req body \
 1.1)if(key is present and not expired) return message key is already present\
 else update key
 
-read
+READ
 1) get key from parameters\
 1.1)if key is present and not expired ,update it.\
  else delete it and show key is expired.
 
-delete\
+DELETE\
 1)if(key is present) delete it\
   else key is not present
 
