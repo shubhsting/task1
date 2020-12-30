@@ -1,6 +1,6 @@
 Overview of this project
 
-==============================================
+===========================================================
 
 This project follows MVC architecture -
 
@@ -19,7 +19,7 @@ To run this project on any local machine-\
 2)run npm install to automatically install all libraries.\
 3)npm start to start the application on your local computer.
 
-===============================================================\
+===========================================================
 Algorithm of this code\
 ADD 
 1) Get data from req body \
@@ -36,4 +36,4 @@ DELETE
 1)if(key is present) delete it\
   else key is not present
 
-=======================================================
+===========================================================
