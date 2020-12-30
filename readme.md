@@ -19,7 +19,7 @@ To run this project on any local machine-\
 2)run npm install to automatically install all libraries.\
 3)npm start to start the application on your local computer.
 
-===========================================================\
+===========================================================
 
 Steps to interact after running this application-
 
@@ -30,7 +30,7 @@ Sample API requests are already explained in that file.Once we run this file in 
 IMPORTANT:
 1)While sending request to add a key-object pair ,if time to live need to be explained ,kindly add that in seconds so that database may adjust according to that.
 
-===========================================================\
+===========================================================
 
 Algorithm of this code\
 ADD 
