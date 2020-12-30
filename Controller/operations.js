@@ -1,12 +1,15 @@
 let fs = require("fs");
 
+//to find path of destination file/database so that it may be edited/read
 let path = require("path");
 
+//to find size of json files
 var sizeof = require('object-sizeof')
 
 function createItem(req, res) {
     //req body is accompanied by kay value pair data 
     let data = req.body;
+
     //find url of file where the database is there
     let url = path.join(__dirname, "..", "Models", "dataModel.json");
 
@@ -16,15 +19,45 @@ function createItem(req, res) {
 
     //iterate over keys of received new key value pairs
     for (key in data) {
-        //check size of key/json object 
-        if (key.length > 32 || sizeof(data[key] > 1040)) {
+        //check size of key/json object 32 chars in key and 16 kb for value
+        if (key.length > 32 || sizeof(data[key]) > 16 * 1024) {
             res.json({
                 message: "Size of key/value not in range",
             })
             return;
         }
-        else
+        //if key is already present
+        else if (file[key]) {
+            //if key is already present and expired ,update it
+            if (file[key].time && file[key].time < Date.now()) {
+                file[key] = data[key];
+                if (file[key].time) {
+                    file[key].time = Number(file[key].time) * 1000 + Date.now();
+                }
+            }
+            else {
+                res.json({
+                    message: "Key is already present"
+                })
+                return;
+            }
+        }
+        else {
             file[key] = data[key];
+            //if time is associated with input key convert that into millisec and attach with date.now
+            if (file[key].time) {
+                file[key].time = Number(file[key].time) * 1000 + Date.now();
+            }
+        }
+    }
+
+
+    //before writing back the code check if the target file doesnot exceed 1 gb
+    if (sizeof(file) > 1 * 1024 * 1024 * 1024) {
+        res.json({
+            message: "Size of file exceeds 1 GB!!Kindly delete some data"
+        })
+        return;
     }
 
     //stringify the updated database and write it again in target file
@@ -54,10 +87,26 @@ function readItem(req, res) {
 
     //return responses for either cases
     if (matched) {
-        res.json({
-            message: "found key",
-            data: matched
-        })
+
+        //if the specified time of that key is elapsed i.e key is not valid
+        let exptime = matched.time;
+
+        //if current time is greater than expire time than key is not valid
+        if (exptime && exptime < Date.now()) {
+            delete file[key];
+            file = JSON.stringify(file);
+            fs.writeFileSync(url, file);
+            res.json({
+                message: "Key expired"
+            })
+        }
+        //if exptime is not attached with key it is directly returned
+        else {
+            res.json({
+                message: "found key",
+                data: matched
+            })
+        }
     }
 
     else {
@@ -84,18 +133,27 @@ function deleteItem(req, res) {
 
     //check if key is present or not and implement either cases
     if (file[key]) {
-        delete file[key];
+        //if key is present check expiry time
+        let exptime = file[key].time;
 
-
-        //write back modified database to original destination
-        file = JSON.stringify(file);
-        fs.writeFileSync(url, file);
-
-        //response if key is found and deleted 
-        res.json({
-            message: "Key Deleted",
-            data: file
-        })
+        //if expiry time is less than current time than key is expired
+        if (exptime && exptime < Date.now()) {
+            delete file[key];
+            res.json({
+                message: "Key Expired"
+            })
+        }
+        else {
+            delete file[key];
+            //write back modified database to original destination
+            file = JSON.stringify(file);
+            fs.writeFileSync(url, file);
+            //response if key is found and deleted 
+            res.json({
+                message: "Key Deleted",
+                data: file
+            })
+        }
     }
     else {
 
