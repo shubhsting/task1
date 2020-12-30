@@ -139,9 +139,12 @@ function deleteItem(req, res) {
         //if expiry time is less than current time than key is expired
         if (exptime && exptime < Date.now()) {
             delete file[key];
+            file = JSON.stringify(file);
+            fs.writeFileSync(url, file);
             res.json({
                 message: "Key Expired"
             })
+            return;
         }
         else {
             delete file[key];
