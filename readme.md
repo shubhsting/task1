@@ -20,6 +20,18 @@ To run this project on any local machine-\
 3)npm start to start the application on your local computer.
 
 ===========================================================\
+
+Steps to interact after running this application-
+
+1) Create any js file (A sample file have been created in form of user.js).File can be created at any location.
+2) Once application is running at localhost.We just need to send API requests to interact with application.
+Sample API requests are already explained in that file.Once we run this file in parallel to application,data is automatically saved into database.
+
+IMPORTANT:
+1)While sending request to add a key-object pair ,if time to live need to be explained ,kindly add that in seconds so that database may adjust according to that.
+
+===========================================================\
+
 Algorithm of this code\
 ADD 
 1) Get data from req body \
@@ -37,3 +49,5 @@ DELETE
   else key is not present
 
 ===========================================================
+
+
