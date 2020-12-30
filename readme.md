@@ -22,9 +22,9 @@ To run this project on any local machine-\
 ===============================================================\
 Algorithm of this code
 Add \
-1) Get data from req body\
+1) Get data from req body \
 1.1)if(key is present and not expired) return message key is already present\
-else update key
+else update key\
 
 read\
 1) get key from parameters\
