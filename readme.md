@@ -31,7 +31,8 @@ READ
 1.1)if key is present and not expired ,update it.\
  else delete it and show key is expired.
 
-DELETE\
+DELETE
+
 1)if(key is present) delete it\
   else key is not present
 
