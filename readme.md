@@ -14,10 +14,10 @@ Packages/Libraries used
 
 ===========================================================
 
-To run this project on any local machine-
+To run this project on any local machine-\
 1)download this code.\
 2)run npm install to automatically install all libraries.\
-3)npm start to start the application on your local computer.\
+3)npm start to start the application on your local computer.
 
 ===============================================================
 Algorithm of this code
