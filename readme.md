@@ -19,20 +19,20 @@ To run this project on any local machine-\
 2)run npm install to automatically install all libraries.\
 3)npm start to start the application on your local computer.
 
-===============================================================
+=============================================================== \
 Algorithm of this code
-Add 
-1) Get data from req body
-1.1)if(key is present and not expired) return message key is already present
+Add \
+1) Get data from req body\
+1.1)if(key is present and not expired) return message key is already present\
 else update key
 
-read
-1) get key from parameters
-1.1)if key is present and not expired ,update it.
- else delete it and show key is expired
+read\
+1) get key from parameters\
+1.1)if key is present and not expired ,update it.\
+ else delete it and show key is expired.\
 
-delete
-if(key is present) delete it
+delete\
+if(key is present) delete it\
 else key is not present
 
 =======================================================
