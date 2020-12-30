@@ -1,3 +1,4 @@
+//to write into database/json object file
 let fs = require("fs");
 
 //to find path of destination file/database so that it may be edited/read
